@@ -1,0 +1,106 @@
+body {
+	margin: 0;
+	overflow: hidden;
+}
+
+.game {
+
+}
+
+.road {
+    position: fixed;
+    top: 0;
+    display: flex;
+    width: 320px;
+}
+
+.left-road-line {
+	width: 10px;
+}
+
+.right-road-line {
+	margin-left: 300px;
+	width: 10px;
+}
+
+.line-block {
+	position: absolute;
+	height: 25px;
+    width: 10px;
+    background-color: black;
+    margin-bottom: 10px;
+}
+
+.car {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	background-color: chocolate;
+}
+
+.myCar {
+	background-color: mediumaquamarine;
+}
+
+.hideCar {
+	visibility: hidden;
+}
+
+.carPart {
+	position: absolute;
+	width: 10px;
+	height: 18px;
+	background-color: white;
+}
+
+.carTopLeftPart {
+	top: 0;
+	left: 0;
+}
+
+.carTopRightPart {
+	top: 0;
+	right: 0;
+}
+
+.carBottomLeftPart {
+	bottom: 0;
+	left: 0;
+}
+
+.carBottomRightPart {
+	bottom: 0;
+	right: 0;
+}
+
+.score {
+	position: fixed;
+	top: 40%;
+	left: 100px;
+	color: black;
+	font-size: 50px;
+}
+
+.gameOver {
+	position: fixed;
+	margin: auto;
+	height: 200px;
+	width: 500px;
+	background-color: gray;
+	opacity: 0.9;
+	top: 30%;
+	left: 33%;
+	font-size: 50px;
+	text-align: center;
+	color: red;
+	padding-top: 10%;
+    font-weight: 900;
+    font-family: monospace;
+}
+
+.playAgainButton {
+	font-size: 50px;
+	position: fixed;
+	top: 50%;
+	left: 110px;
+}
