@@ -1,6 +1,4 @@
-var game = document.createElement('div');
-
-game.classList.add('game');
+var game = createElement('game');
 
 window.onload = function()
 {
@@ -13,9 +11,21 @@ var gameOver = false;
 
 var currentScore = 0;
 
-var road = document.createElement('div');
+function createElement(className, parentElement)
+{
+	var div = document.createElement('div');
+	
+	div.classList.add(className);
 
-road.classList.add('road');
+	if(parentElement !== undefined)
+	{
+		parentElement.append(div);
+	}
+
+	return div;
+}
+
+var road = createElement('road', game);
 
 var totalWidth = window.visualViewport.width;
 
@@ -23,19 +33,9 @@ var roadMargin = (totalWidth - 320) / 2;
 
 road.style.left = roadMargin;
 
-game.append(road);
+var leftRoadLine = createElement('left-road-line', road);
 
-var leftRoadLine = document.createElement('div');
-
-leftRoadLine.classList.add('left-road-line');
-
-road.append(leftRoadLine);
-
-var rightRoadLine = document.createElement('div');
-
-rightRoadLine.classList.add('right-road-line');
-
-road.append(rightRoadLine);
+var rightRoadLine = createElement('right-road-line', road);
 
 var totalHeight = window.visualViewport.height;
 
@@ -45,24 +45,16 @@ totalHeight -= totalHeight - (noOfBlocksToCreate * 35);
 
 function appendLeftRoadLineBlock(position)
 {
-	var lineBlock = document.createElement('div');
-
-	lineBlock.classList.add('line-block');
+	var lineBlock = createElement('line-block', leftRoadLine);
 
 	lineBlock.style.top = position * 35;
-
-	leftRoadLine.append(lineBlock);
 }
 
 function appendRightRoadLineBlock(position)
 {
-	var lineBlock = document.createElement('div');
-
-	lineBlock.classList.add('line-block');
+	var lineBlock = createElement('line-block', rightRoadLine);
 
 	lineBlock.style.top = position * 35;
-
-	rightRoadLine.append(lineBlock);
 }
 
 for(var i = 0; i < noOfBlocksToCreate; i++)
@@ -118,27 +110,21 @@ function addClass(element, classes)
 	}
 }
 
-var myCar = document.createElement('div');
+var myCar = createElement('car', game);
 
-addClass(myCar, ['car', 'myCar']);
+myCar.classList.add('myCar');
 
 myCar.style.top = totalHeight - 50;
 
 myCar.style.left = roadMargin + 135;
 
-game.append(myCar);
+var carTopLeftPart = createElement('carPart', myCar);
 
-var carTopLeftPart = document.createElement('div');
+carTopLeftPart.classList.add('carTopLeftPart');
 
-addClass(carTopLeftPart, ['carPart', 'carTopLeftPart']);
+var carTopRightPart = createElement('carPart', myCar);
 
-myCar.append(carTopLeftPart);
-
-var carTopRightPart = document.createElement('div');
-
-addClass(carTopRightPart, ['carPart', 'carTopRightPart']);
-
-myCar.append(carTopRightPart);
+carTopRightPart.classList.add('carTopRightPart');
 
 function onkeyup(event)
 {
@@ -177,13 +163,9 @@ function onkeyup(event)
 
 function finishGame()
 {
-	var gameOverDiv = document.createElement('gameOver');
-
-	gameOverDiv.classList.add('gameOver');
+	var gameOverDiv = createElement('gameOver', game);
 
 	gameOverDiv.innerHTML = "GAME OVER";
-
-	game.append(gameOverDiv);
 
 	var playAgainButton = document.createElement('button');
 
@@ -201,27 +183,21 @@ function finishGame()
 
 function createCar(top, left, i)
 {
-	var car = document.createElement('div');
+	var car = createElement('car', game);
 
-	addClass(car, ['car', 'hideCar']);
+	car.classList.add('hideCar');
 
 	car.style.top = top;
 
 	car.style.left = roadMargin + 10 + left;
 
-	game.append(car);
+	var carBottomLeftPart = createElement('carPart', car);
 
-	var carBottomLeftPart = document.createElement('div');
+	carBottomLeftPart.classList.add('carBottomLeftPart');
 
-	addClass(carBottomLeftPart, ['carPart', 'carBottomLeftPart']);
+	var carBottomRightPart = createElement('carPart', car);
 
-	car.append(carBottomLeftPart);
-
-	var carBottomRightPart = document.createElement('div');
-
-	addClass(carBottomRightPart, ['carPart', 'carBottomRightPart']);
-
-	car.append(carBottomRightPart);
+	carBottomRightPart.classList.add('carBottomRightPart');
 
 	car.visible = false;
 
@@ -280,13 +256,9 @@ for(var i = 0; i < noOfCarsToCreate; i++)
 	createCar(i * 200, (60 * randomNumber(0, 4)) + 5, i);
 } 
 
-var score = document.createElement('div');
-
-score.classList.add('score');
+var score = createElement('score', game);
 
 score.innerHTML = "Your Score: " + currentScore;
-
-game.append(score);
 
 function updateScore()
 {
